@@ -8,6 +8,14 @@
 <meta name="keywords" content="Key, Words, For, SEO" />
 ```
 
+## LINKING FILES
+
+- Use the `link` tag
+```html
+<link rel="stylesheet" href="<path_to_css_file>" />
+<link rel="shortcut icon" href="<path_to_ico_file>" type="image/x-icon" />
+```
+
 ## FORMS
 
 - Form element - `<form action="" method="GET/POST">...</form>`
