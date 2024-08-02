@@ -84,3 +84,26 @@
 <button type="reset">Reset</button>
 <button disabled>Disabled Button</button>
 ```
+
+## SEMANTIC HTML
+
+- Use the correct element for the job
+- Why?
+  - Search Engine Optimisation - Search engines use web crawlers, and if the page is not semantic, it won't be able to understand the contents of the webpage, thus ranking it low
+  - Accessibility - Visually impaired users take the help of screen readers to access the web. If the HTML is not semantic, then screen readers won't be able to do their job properly
+  - Maintainability - Reading and modifying the code becomes tough
+- Semantic sectioning refers to grouping content together. General format of website:
+  - Header section (containing a navigation section)
+  - Hero image
+  - A main content section
+  - Article section
+  - Aside sections
+  - Footer section
+- To group content together:
+  - `div` - Generic container which is non-semantic and has no effect on the content or layout
+  - `header` - Introductory information of a page or `section`. It displays the title of the website, maybe a logo, and always a navigation
+  - `nav` - Used when grouping a list of links. It represents the menu of a page or `section`
+  - `main` - For the main content of the page. Everything except the `header` and `footer` goes inside the `main` element. Should be only 1 per page
+  - `article` - Self-contained independent and reusable group of content meant to exist independently of the page on its own
+  - `section` - Used to group together nearby content, and represents a standalone section of page but lacks a bit of semantic meaning, so it is used inside an `article` element
+  - `footer` - Positioned at the bottom of the page representing the ending of the body. If contains contact information, social links, and some navigation similar to a header menu
