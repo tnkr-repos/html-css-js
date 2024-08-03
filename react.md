@@ -65,3 +65,32 @@ function App() {
   }, []);
 }
 ```
+
+## HOW TO SETUP A NEW REACT PROJECT?
+
+- Most common solutions include:
+  - `create-react-app` tool:
+    - Complete starter kit for React applications
+    - All common development tools are preconfigured out-of-the-box specifically for React such as development server, Webpack (for module bundling), linter (ESLint), code formatter (Prettier), testing library (Jest), Fable (for enabling latest JavaScript features)
+    - Developed a long time ago, and so uses a slow and outdated technology (such as WebPack bundler)
+    - Not to be used for real world applications (but is fine for tutorials) due to its slow refresh times
+    - Command - `npx create-react-app <project_name>`
+      - Follow any subcommand necessary for vulnerability management - `npm audit fix --force`
+      - This creates a similar folder structure as we would have achieved using `npm init`. All JavaScript projects have a build tool associated with them
+      - `package.json` file contains meta data about the project
+      - `node_modules/` directory contains all the installed npm packages
+      - `src/` folder will contain all the source code will go
+      - `public/` folder will contain all the assets (such as images, favicon, and `index.html` file)
+      - Causes a lot of breaking changes and prefer to use `vite` always
+  - `vite` build tool:
+    - To be used for modern real-world apps
+    - Modern build tool (like WebPack) that contains a template for setting up React applications
+    - Manual setup of developer tools (such as ESLint, Prettier, Jest, etc) is required
+    - Provides Hot Module Reloading (changes made in code show up instantly without having to manually reload the page) and fast bundling
+  - Use `NextJS` or `Remix` (React frameworks)
+    - As per advice from React team in React Documentation
+    - React framework contains things like routing, data fetching, and server-side rendering (things which React does not provide out-of-the-box)
+    - A framework built on top of the React library which makes it easier to create real world application than just vanilla React
+    - Only makes sense for building actual products
+
+## 
