@@ -407,7 +407,180 @@ for (let code in codes) {
 
 # DATA TYPES
 
+## METHODS OF PRIMITIVES
 
+- JavaScript allows us to work with primitives as if they were objects. It also provides methods to call on primitive type objects
+
+- A primitive ia a value of primitive type (`string`, `number`, `bigint`, `boolean`, `symbol`, `null`, `undefined`)
+
+- An object is capable of storing multiple values as properties. They can be created using `{}` (for e.g. `{name: "John", age: 30}`). Functions are also a type of object
+
+- Objects allows us to store a function as one of its properties. There are many in-built object such as those that work with dates, errors, HTML elements, etc., but object require more resource intensive than primitives:
+```javascript
+// creating a john object with a sayHi method
+let john = {
+  name: "John",
+  sayHi: function() {
+    alert("Hi, buddy!");
+  }
+};
+
+john.sayHi(); // Hi, buddy!
+```
+
+## DESTRUCTING ASSIGNMENT
+
+- When we pass `Object` and `Array` to a function, we may not need all of it. Destructuring assignment allows us to unpack arrays and objects into a bunch of variables
+```javascript
+let arr = ["John", "Smith"];
+
+// arr is not modified
+let [firstName, surName] = arr; // same as let firstName = arr[0], surName = arr[1]
+alert(firstName);
+alert(surName);
+
+// Caesar is ignored
+let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+alert(title); // Consul
+
+// Works on any iterable - Its is basically syntax sugar for calling for...of on the operand right hand side of = operator
+let [a, b, c] = "abc"; // ["a", "b", "c"]
+let [one, two, three] = new Set([1, 2, 3]);
+
+// Assign to any assignables
+let user = {};
+[user.name, user.surname] = "John Smith".split(' ');
+alert(user.name); // John
+alert(user.surname);  // Smith
+
+let user = {
+  name: "John",
+  age: 30,
+};
+// looping over key-value pairs
+for (let [key, value] of Object.entries(user)) {
+  alert(`${key}: ${value}`); // name: John\nage: 30
+}
+```
+
+- Swapping variables using destructuring
+```javascript
+let guest = "Jane";
+let admin = "Pete";
+
+// create a temporary array of two variables, and immediately destructure it in swapped order
+[guest, admin] = [admin, guest];
+```
+
+- Rest pattern and Default values
+```javascript
+let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "Of the Roman Republic"];
+// rest is an array of remaining element
+alert(rest[0], rest[1]);  // Consul, Of the Roman Republic
+
+// we get errors only if the right side is bigger than left side (without using rest)
+// we get undefined as values for elements that are not present for destructuring
+let [name = prompt("name?"), surname = "Anonymous"] = ["Julius"];
+alert(name);  // Julius
+alert(surname); // whatever prompt gets - default value
+```
+
+- Object Destructuring - We should have an existing object on the right side of `=` that we want to split into variables. The left-side contains a object-like pattern for corresponding properties. Order does not matter
+```javascript
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+let {width, height, title} = options;
+// extracting only what we need
+let { title } = options;
+
+// default values using different variable names
+options = {
+  title: "Menu",
+};
+
+let {width: w = 100, height: h = prompt("height?"), title} = options;
+alert(`${title}, ${w}, ${h}`);
+```
+
+- Rest pattern - If objects have more properties than we have variables
+```javascript
+let options = {
+  title: "Menu",
+  height: 200,
+  width: 100,
+};
+
+// title = property named title
+// rest = object with the rest of properties
+let {title, ...rest} = options;
+
+// now title="Menu", rest={height: 200, width: 100}
+alert(rest.height); // 200
+alert(rest.width);  // 100
+
+// to use already existing variables
+let title, width, height;
+// if parentheses are not used, then {...} will be treated as a code block, and not destructuring, thus giving an error
+({title, width, height} = {title: "menu", width: 200, height: 100});
+```
+
+- Nested Destructuring - Left side must have the same structure as the right side
+```javascript
+let options = {
+  size: {
+    width: 100,
+    height: 200,
+  },
+  items: ["Cake", "Donut"],
+  extra: true,
+};
+
+let {
+  size: { // put size here
+    width,
+    height,
+  },
+  items: [item1, item2],  // assign items here
+  title = "Menu", // not present in the object (default value is used)
+} = options;
+```
+
+- Use cases:
+- Smart function parameters - When dealing with function that have large number of parameters, it leads to cumbersome code when calling those functions, and remembering the order of parameters is difficult as well. We can use object destructuring to resolve this issue by simply passing just the object, and the parameters are assigned automatically
+```javascript
+// sample function
+function showMenu(title = "Untitled", width = 200, height = 100, items = []) {...}
+// calling the function - long function calls, and order of parameters is difficult to determine
+showMenu("My Menu", undefined, undefined, ["Item 1", "Item 2"]);
+
+// use object destructuring instead
+let options = {
+  title: "My Menu",
+  items: ["Item 1", "Item 2"]
+};
+
+// using {} as default value so that there is always something to destructurise
+function showMenu({title = "Untitled", width = 200, height = 100, items = []} = {}) {
+  // title, items -> taken from options
+  // width, height -> defaults used
+  alert(`${title} ${width} ${height}`); // My Menu 200 100
+  alert(items); // Item 1, Item 2
+}
+
+// To rename property names and use different variables instead
+function showMenu({titlev = "Untitled", width: w = 100, height: h = 200, items: [item1, item2]} = {}) {
+  alert(`${title} ${w} ${h}`);
+  alert(item1);
+  alert(item2);
+}
+
+// simpler function call without need to remember order of parameters
+showMenu(options);
+```
 
 # ADVANCED WORKING WITH FUNCTIONS
 
