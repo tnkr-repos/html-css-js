@@ -1,3 +1,60 @@
+- CSS - Cascading Style Sheets
+- Used to format the content (properties such as font, spacing, layout, etc.)
+- [CSS Rules](./images/css-rules.png)
+- How can CSS be written:
+    - Inline - Inside the HTML element using the `style` attribute (Don't use)
+    ```html
+    <h1 style="color: blue">Hello World</h1>
+    ```
+    - Internal - Inside the `style` element in the `head` element of HTML file.
+    This provides better separation of concerns, but can be a problem if there
+    is a lot of CSS
+    ```html
+    <head>
+        <style>
+            h1 {
+                color: blue;
+            }
+        </style>
+    </head>
+    ```
+    - External - Writing CSS rules inside another css file, and link the file to
+    the HTML document to be styled
+    ```html
+    <head>
+        <link rel="stylesheet" href="<path_of_css_file>" />
+    </head>
+    ```
+    ```css
+    h1 {
+        color: blue;
+    }
+    ```
+- Styling has to be done for `li` elements, and not `ol` or `ul`
+- Combining selectors:
+    - List selectors - Add multiple selectors separated by comma (`h1, h2 {}`)
+    - Descendant selector - Selector a particular child tag inside a parent tag
+    (`footer p {}` selects all `p` in `footer`). But this encodes our HTML
+    structure into our CSS selectors, and this will be difficult to maintain in
+    future if HTML structure changes. Use `id` or `class` selectors instead
+- ID/CLASS selector - Add `id/class` attribute to an HTML element select using
+that. The difference between them is that we can't reuse `id` values on the same
+HTML document, but we can do so with `class` attribute values (for values with
+multiple words use dashes and not underscores as per convention). Although in
+the real world we never work with ids, its always classes for future proofing
+
+## TYPOGRAPHY
+
+- `font-family: system-ui, sans-serif` - Ideal for website (to remove the small
+edges on letters and use system font instead of loading a custom font)
+- `font-style: italic` - To italisize the letters
+- `text-transform: uppercase/capitalise` - To change the case
+- `font-size: 26px` - Set size of font
+- `text-align: left/right/center/justify-all` - Text alignment
+- `line-height: 1.5` - Recommended for normal font sizes (spacing between lines
+will be 1.5 times that of the font-size)
+- `font-weight: bold/100/200/.../900` - For boldness of font
+
 ## BOX MODEL
 
 - Everything is a box on the web
