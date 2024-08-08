@@ -72,6 +72,12 @@ will be 1.5 times that of the font-size)
 structure
 - They don't work great when we mix multiple elements inside a parent element,
 but work great when all the child elements are the same (like in a `ul` or `ol`)
+- Styling links:
+    - `a:link` - Styling links which have an `href` attribute
+    - `a:visited` - Color after a link has been visited (keep it the same as the
+    normal link)
+    - `a:hover` - Styling when mouse hovers over the link
+    - `a:active` - Styling when mouse clicks over the link
 
 ## BOX MODEL
 
