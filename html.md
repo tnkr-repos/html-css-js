@@ -1,3 +1,23 @@
+- Entry point of every website is `index.html` and it should be present in each
+website
+
+- HTML - HyperText Markup Language
+- Used to structure and describe the content of a webpage
+- It consists of elements that describe different types of content
+- [Elements vs Tags](./images/elements-vs-tags.png)
+- `DOCTYPE` is to denote the browser that this document is an HTML document, and
+`html` tells the browser to use the HTML5 specification to render this document
+- Attributes are pieces of data that are used to describe an element
+
+## HTML ELEMENT
+
+- Has exactly 2 children - `<head>` and `<body>`
+
+## HEAD ELEMENT
+
+- For content not visible to us on the browser window (such as `meta` elements,
+`link` to CSS files and favicons, and `title` of browser tab)
+
 ## META TAGS
 
 - Inside the `head` element
@@ -15,6 +35,22 @@
 <link rel="stylesheet" href="<path_to_css_file>" />
 <link rel="shortcut icon" href="<path_to_ico_file>" type="image/x-icon" />
 ```
+
+## HEADINGS
+
+- `h1` through `h6` tags
+- Only 1 `h1` element per page
+
+## PARAGRAPHS
+
+- `p` tag
+- To insert line break between two blocks of text, close one `p` tag and open
+another
+
+## LISTS
+
+- Ordered Lists - `<ol><li></li>...</ol>`
+- Unordered lists - `<ul><li></li>...</ul>`
 
 ## FORMS
 
@@ -87,7 +123,8 @@
 
 ## SEMANTIC HTML
 
-- Use the correct element for the job
+- Use the correct element for the job (`strong` for important text, `em` for
+emphasised text)
 - Why?
   - Search Engine Optimisation - Search engines use web crawlers, and if the page is not semantic, it won't be able to understand the contents of the webpage, thus ranking it low
   - Accessibility - Visually impaired users take the help of screen readers to access the web. If the HTML is not semantic, then screen readers won't be able to do their job properly
@@ -107,3 +144,17 @@
   - `article` - Self-contained independent and reusable group of content meant to exist independently of the page on its own
   - `section` - Used to group together nearby content, and represents a standalone section of page but lacks a bit of semantic meaning, so it is used inside an `article` element
   - `footer` - Positioned at the bottom of the page representing the ending of the body. If contains contact information, social links, and some navigation similar to a header menu
+
+## IMAGES
+
+- Use the `img` tag
+- Attributes:
+  - `src` - To denote the path
+  - `alt` - Description of the image for SEO, accessibility and if the image
+  doesn't load then it will be shown on the webpage instead
+  - `width` / `
+```html
+<img src="<path>" alt="<Description>" width="<width_in_px>" height="<height_in_px>" />
+```
+
+## 
