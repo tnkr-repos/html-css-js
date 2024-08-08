@@ -66,6 +66,13 @@ will be 1.5 times that of the font-size)
 - `color` - Defines text color
 - `background-color` - Defines color of page
 
+## PSEUDO CLASSES
+
+- `:first-child`, `:last-child`, `:nth-child(odd/even)` - Dealing with HTML
+structure
+- They don't work great when we mix multiple elements inside a parent element,
+but work great when all the child elements are the same (like in a `ul` or `ol`)
+
 ## BOX MODEL
 
 - Everything is a box on the web
