@@ -1,5 +1,6 @@
 - Entry point of every website is `index.html` and it should be present in each
 website
+  - To create different webpages keep creating and linking HTML documents
 
 - HTML - HyperText Markup Language
 - Used to structure and describe the content of a webpage
@@ -157,4 +158,19 @@ emphasised text)
 <img src="<path>" alt="<Description>" width="<width_in_px>" height="<height_in_px>" />
 ```
 
-## 
+## HYPERLINKS
+
+- Pointing outside of our website
+  - `<a href="<url>">Display Text</a>`
+  - To open link in a new tab use attribute `target="_blank"`
+```html
+<a href="http://"></a>
+<a href="mailto:"></a>
+<a href="tel:+"></a>
+```
+
+- Pointing inside our website to a different page or section
+  - `<a href="<path_of_html_file>">Display text</a>
+
+- For placeholder links (links which don't actually point to any real URL) can
+be made by adding `#` in the `href` attribute value

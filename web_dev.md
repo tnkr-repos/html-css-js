@@ -36,3 +36,5 @@ rendered (just as in the case of static websites)
   - JavaScript - Allows us to add dynamic and interactive effects on the webpage
   It can also be used to manipulate content, or the CSS, to load data from web
   servers and build entire front-end applications (called "web applications")
+
+- Everything on the internet has its own URL
