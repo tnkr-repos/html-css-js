@@ -31,12 +31,14 @@
     }
     ```
 - Styling has to be done for `li` elements, and not `ol` or `ul`
+    - To remove bullets use `list-style: none;` declaration
 - Combining selectors:
     - List selectors - Add multiple selectors separated by comma (`h1, h2 {}`)
     - Descendant selector - Selector a particular child tag inside a parent tag
     (`footer p {}` selects all `p` in `footer`). But this encodes our HTML
     structure into our CSS selectors, and this will be difficult to maintain in
     future if HTML structure changes. Use `id` or `class` selectors instead
+- Element selector - Using the element tag
 - ID/CLASS selector - Add `id/class` attribute to an HTML element select using
 that. The difference between them is that we can't reuse `id` values on the same
 HTML document, but we can do so with `class` attribute values (for values with
@@ -54,6 +56,15 @@ edges on letters and use system font instead of loading a custom font)
 - `line-height: 1.5` - Recommended for normal font sizes (spacing between lines
 will be 1.5 times that of the font-size)
 - `font-weight: bold/100/200/.../900` - For boldness of font
+
+## COLORS
+
+- [RGB Model in CSS](./images/rgb_model.png)
+- [Color Representation in CSS](./images/rgb_notation.png)
+- Grey is formed when all colors have equal values (#000 - black; #fff - white;
+#444 - dark grey for fonts; $b7b7b7b - light grey for backgrounds)
+- `color` - Defines text color
+- `background-color` - Defines color of page
 
 ## BOX MODEL
 
@@ -87,6 +98,7 @@ will be 1.5 times that of the font-size)
 
     /* size style color */
     border: 5px solid black;
+    /* border-top; border-bottom; border-right; border-left */
 
     /* margin-top -> margin-right -> margin-bottom -> margin-left */
     margin: 20px;
