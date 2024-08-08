@@ -1,3 +1,5 @@
+# ANYTHING ELSE WILL BE ADDED ON A NEED TO KNOW BASIS
+
 - Entry point of every website is `index.html` and it should be present in each
 website
   - To create different webpages keep creating and linking HTML documents
@@ -9,20 +11,27 @@ website
 - `DOCTYPE` is to denote the browser that this document is an HTML document, and
 `html` tells the browser to use the HTML5 specification to render this document
 - Attributes are pieces of data that are used to describe an element
+- HTML ignores whitespaces (even multiple spaces added in content)
 
 ## HTML ENTITIES
 
 - Used to represent special characters on a webpage that cannot be typed
 directly in an HTML document
+- General format - `&<code>;`
 
 ## HTML ELEMENT
 
+- Referred to as the `root` element and all code is written inside of this
 - Has exactly 2 children - `<head>` and `<body>`
 
 ## HEAD ELEMENT
 
 - For content not visible to us on the browser window (such as `meta` elements,
 `link` to CSS files and favicons, and `title` of browser tab)
+
+## BODY ELEMENT
+
+- For content that is visible on the browser and browser tabs (most content)
 
 ## META TAGS
 
@@ -145,7 +154,7 @@ layout of the webpage in any way. General format of website:
   - Hero image
   - A main content section
   - Article section
-  - Aside sections
+  - Aside sections (doesn't always needs to be a sidebar)
   - Footer section
 - To group content together:
   - `div` - Generic container which is non-semantic and has no effect on the
@@ -161,6 +170,8 @@ layout of the webpage in any way. General format of website:
   - `section` - Used to group together nearby content, and represents a
   standalone section of page but lacks a bit of semantic meaning, so it is used
   inside an `article` element
+  - `aside` - Information that complements the information present in the `main`
+  section of the page
   - `footer` - Positioned at the bottom of the page representing the ending of
   the body. If contains contact information, social links, and some navigation
   similar to a header menu
@@ -174,14 +185,33 @@ layout of the webpage in any way. General format of website:
   doesn't load then it will be shown on the webpage instead
   - `width` / `
 ```html
-<img src="<path>" alt="<Description>" width="<width_in_px>" height="<height_in_px>" />
+<img src="<path>" alt="<Description>" width="<width_in_px>"
+  height="<height_in_px>" />
+```
+
+## VIDEO
+
+- Use the `video` tag
+- Attributes
+  - `src` - To denote the path (store the video file in `public` directory)
+  - `width/height` - To denote size of the video
+  - `controls autoplay loop muted` - Boolean attributes (if they are present
+  that means true, and if absent that means false)
+- Instead of an `alt` attribute, add a `p` tag inside the `video` tag content to
+describe in case the video fails to load
+```html
+<video src="<path>" width="<width_in_px>" height="<height_in_px>" controls
+  autoplay loop muted>
+  <p>Video Description</p>
+</video>
 ```
 
 ## HYPERLINKS
 
 - Pointing outside of our website
   - `<a href="<url>">Display Text</a>`
-  - To open link in a new tab use attribute `target="_blank"`
+  - To open link in a new tab use attribute `target="_blank"` and add
+  `rel=noopener noreferrer` always alongside `target`
 ```html
 <a href="http://"></a>
 <a href="mailto:"></a>
@@ -190,8 +220,28 @@ layout of the webpage in any way. General format of website:
 
 - Pointing inside our website to a different page or section
   - `<a href="<path_of_html_file>">Display text</a>
+  - For `index.html` we can use `<a href="/">Home Page</a>` as `/` refers to the
+  `index.html` page always
 
 - For placeholder links (links which don't actually point to any real URL) can
-be made by adding `#` in the `href` attribute value
+be made by adding `#` in the `href` attribute value - `#` refers to the current
+webpage
 
-## 
+- Use `title=<x>` attribute to provide information about the hyperlink when
+hovering over the link
+
+- To link to different sections of a webpage, add an `id` global attribute to
+the element to be linked, and use `<a href="#<id_name>">Some Text</a>`
+
+## RANDOM ELEMENTS
+
+- Horizontal line in webpage - `<hr />`
+- Line break in paragraph - `<br />`
+- Block level element take up the entire width of the container or viewport,
+thus rendering the next element underneath it
+- Inline element take up only the width of the content, thus rendering next
+element next to it. To make an inline element as block, use the `display`
+property in CSS, or enclose the inline element in a block level element (`div`)
+- Comments - `<!-- comments -->` (use sparingly only to describe why the code
+does as it does)
+- Image hyperlinks can be created by enclosing an `img` element inside `a` tags
