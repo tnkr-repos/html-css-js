@@ -38,3 +38,7 @@ rendered (just as in the case of static websites)
   servers and build entire front-end applications (called "web applications")
 
 - Everything on the internet has its own URL
+
+- `127.0.0.1` represents the IP address that the host machine assigns to itself
+
+- Port number is like a subaddress on the host machine (inside the IP address)
