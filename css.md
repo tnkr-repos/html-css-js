@@ -1,3 +1,5 @@
+## INTRODUCTION
+
 - CSS - Cascading Style Sheets
 - Used to format the content (properties such as font, spacing, layout, etc.)
 - [CSS Rules](./images/css-rules.png)
@@ -77,7 +79,35 @@ but work great when all the child elements are the same (like in a `ul` or `ol`)
     - `a:visited` - Color after a link has been visited (keep it the same as the
     normal link)
     - `a:hover` - Styling when mouse hovers over the link
-    - `a:active` - Styling when mouse clicks over the link
+    - `a:active` - Styling when mouse clicks over the link (When a link is
+    active it is simulatenously being hovered upon as well)
+    - Use `text-decoration: none` to remove any underlines that default links
+    have; It also takes 3 values - `line_used style_of_line color_of_line`
+
+## DEV TOOLS
+
+- Element Tab for HTML
+- Element -> Styles subtab for CSS
+- Selecting an element shows all the styles applied on that element (as well as
+the last style contains the default styling applied by the browser)
+- Use the Styles -> Filter section to apply hover and active effects on links
+without having to actually hover on them to view the styles
+
+## CONFLICTS BETWEEN SELECTORS
+
+- [combination](./images/multiple-selectors.png)
+- [Conflicting Rules](./images/conflicts.png)
+- Even pseudo classes have same specificity as the class selector
+- `important` selector (should not be used) - `color: green !important`
+- Write your selectors as simple as possible and do not add too much nesting, or
+`id` and `class` in the same selector
+
+## INHERITENCE
+
+- Mechanism by which some styles get assigned to an element from their parent
+elements
+- But inherited rules get overwritten very easily in case of conflicts
+- Mostly styles related to typography get inherited (and not all styles)
 
 ## BOX MODEL
 
