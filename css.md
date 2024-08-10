@@ -198,6 +198,27 @@ it on the `body` element and hope all other elements inherit it from that rule
 }
 ```
 
+## SIZING IMAGES
+
+- Use dimensions on our images in CSS only (not in HTML using attributes `width`
+and `height`)
+- If you use just one attribute, use `auto` for the other dimension to maintain
+the aspect ratio
+```css
+img {
+    width: 100px;
+    height: auto;
+}
+```
+
+## CENTER CONTENT ON A WEBPAGE
+
+- Put the entire content inside a container (non-semantic `div` will work), give
+it a `width` and grant it a `margin: 0 auto` 
+- While adding `margins` after a universal reset, choose `margin-bottom` and
+stick to that (keep applying only `margin-bottom` to the elements below which
+space is required, so as to not face the issue with collapsing margins)
+
 ## INFINITE SCROLL ANIMATION (MARQUEE) USING CSS ONLY
 
 - Concept:
