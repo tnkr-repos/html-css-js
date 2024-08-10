@@ -107,7 +107,15 @@ without having to actually hover on them to view the styles
 - Mechanism by which some styles get assigned to an element from their parent
 elements
 - But inherited rules get overwritten very easily in case of conflicts
-- Mostly styles related to typography get inherited (and not all styles)
+- Mostly styles related to typography get inherited (and not all styles). So
+include them in the `body` tag as we would want uniformity in our text
+- Universal Selector (`*`) selects all the elements and applies a styling to all
+of them. But it has the lowest priority and can easily get overwritten. But this
+follows a different mechanism than inheritance as this applies the rules to all
+elements specifically. Use this for properties that don't get inherited, and use
+the `body` element to apply styles to all elements that do get inherited (mostly
+font related settings)
+- ![Inheritance Working Mechanism](./images/inheritence_workings.png)
 
 ## BOX MODEL
 
