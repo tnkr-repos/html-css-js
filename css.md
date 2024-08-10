@@ -83,6 +83,9 @@ but work great when all the child elements are the same (like in a `ul` or `ol`)
     active it is simulatenously being hovered upon as well)
     - Use `text-decoration: none` to remove any underlines that default links
     have; It also takes 3 values - `line_used style_of_line color_of_line`
+- Styling buttons:
+    - They have the `hover` state from links and just the normal state
+    - Often used properties - `border: none; cursor: pointer`
 
 ## DEV TOOLS
 
@@ -119,13 +122,20 @@ font related settings)
 
 ## BOX MODEL
 
-- Everything is a box on the web
+- It describes how elements are displayed on a webpage and how they are sized.
+Everything is a box on the web
 - Box Model applies to everything on the web. It consists of:
     - Content - Width and height of an element
-    - Padding - Adds space inside of an element
-    - Border - 
-    - Margin - creates extra space around an element which pushes away the other elements away
-- To view an element's box model in Dev Tools - Select the element using the `Element Selector` tool and go to the `Computed` tab
+    - Padding - Adds space inside of an element between the content and padding.
+    Used most often on elements with some `background-color`
+    - Border - A lien around the content but inside the element
+    - Margin - creates extra space around an element which pushes away the other
+    elements away
+    - Fill Area - If we apply a `background-color` or `background-image` to an
+    element, it will occupy the entire visible part (content + padding + border)
+- ![Box Model](./images/box-model.png)
+- To view an element's box model in Dev Tools - Select the element using the
+`Element Selector` tool and go to the `Computed` tab
 ```html
 <div class="box">
     Hello World
@@ -158,8 +168,17 @@ font related settings)
     margin: 30px 30px 30px 30px;
 }
 ```
-- If you select an element in Dev Tools and go to the `Styles` panel, you will get the `user agent stylesheet` showing the default styles applied by the browser
-- Under normal circumstances, `border` and `padding` are inside the block element, and when calculating the net effective `height` and `width` ofthe element, we need to add them up. This is tedious, so use `box-sizing: border-box` (normally it is `box-sizing: content-box`)
+- When two margins occupy the same space (for e.g. the `margin-bottom` of one
+element with the `margin-top` of another element), they don't get added up.
+Rather only the larger one shows on the webpage. This is called collapsing
+margins. 
+- If you select an element in Dev Tools and go to the `Styles` panel, you will
+get the `user agent stylesheet` showing the default styles applied by the 
+browser
+- Under normal circumstances, `border` and `padding` are inside the block
+element, and when calculating the net effective `height` and `width` of the
+element, we need to add them up. This is tedious so use `box-sizing: border-box`
+(normally it is `box-sizing: content-box`)
 ```css
 *,
 *::before,
@@ -169,6 +188,15 @@ font related settings)
 ```
 
 ## CSS RESET
+
+- Added to the universal selector they don't get inherited, and so we can't use
+it on the `body` element and hope all other elements inherit it from that rule
+```css
+* {
+    margin: 0;
+    padding: 0;
+}
+```
 
 ## INFINITE SCROLL ANIMATION (MARQUEE) USING CSS ONLY
 
