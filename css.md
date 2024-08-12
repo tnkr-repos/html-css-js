@@ -46,6 +46,13 @@ that. The difference between them is that we can't reuse `id` values on the same
 HTML document, but we can do so with `class` attribute values (for values with
 multiple words use dashes and not underscores as per convention). Although in
 the real world we never work with ids, its always classes for future proofing
+- Adjancent selector - Using `+`
+```css
+h3 + p::first-line {    /* first line of every paragraph which is immediately
+preceded by a h3 element */
+    color: red;
+}
+```
 
 ## TYPOGRAPHY
 
@@ -186,6 +193,20 @@ element, we need to add them up. This is tedious so use `box-sizing: border-box`
     box-sizing: border-box;
 }
 ```
+- Inline boxes occupy the space they need for their content, and cause no line
+breaks after or before the element. `height` and `width` do not apply on these
+elements and `padding` and `margin` only applies horizontally. For e.g. `a`, 
+`img`, `strong`, `em`, `button`, etc. Use `display: inline` for creating inline
+elements
+- Block level boxes occupy the entire width of their parent. So they cannot be
+side-by-side with one another. Use `display: block` to create block elements
+- If you set `height` on an element then it becomes fixed and won't expand even
+if the content takes up more space (thus causing overflow). Thus `height` should
+not be fixed for elements unless absolutely necessary
+- Inline-block elements combines the best of both worlds - they occupy the width
+of the content and cause no line breaks (thus acting as `inline`) but we can add
+`padding`, `margin`, `height` and `width`
+- ![Inline, Block, Inline-Block](./images/inline-block.png)
 
 ## CSS RESET
 
@@ -333,21 +354,61 @@ space is required, so as to not face the issue with collapsing margins)
 
 - If you simply place element in HTML, they will move other elements around it
 
-- Use CSS Positioning to insert elements into pages without altering the position of other elements
+- Use CSS Positioning to insert elements into pages without altering the
+position of other elements
 
-- `top, right, bottom, left` properties are unlocked when the `position` attribute is assigned a value
+- `top, right, bottom, left` properties are unlocked when the `position`
+attribute is assigned a value
 
 - `position: absolute`
-    - The element gets removed from the document. No space is created for them, and other elements are placed as if the element with absolute positioning never existed
-    - The `top, right, bottom, left` attributes are calculated from the page. If you want them to be calculated based on the element's container, the container should have `position` attribute (any value will work except `static` which is the default `position` value)
-    - If you want the popped-out element to stack underneath the normal page, use `z-index: -1`
-    - If you are placing element using the `top, right, bottom, left` attributes and a horizontal scroll-bar is appearing, just add `overflow-x: hidden` to the `body` element
+    - The element gets removed from the document. No space is created for them,
+    and other elements are placed as if the element with absolute positioning
+    never existed
+    - The `top, right, bottom, left` attributes are calculated from the page. If
+    you want them to be calculated based on the element's container, the
+    container should have `position` attribute (any value will work except
+    `static` which is the default `position` value)
+    - If you want the popped-out element to stack underneath the normal page,
+    use `z-index: -1`
+    - If you are placing element using the `top, right, bottom, left` attributes
+    and a horizontal scroll-bar is appearing, just add `overflow-x: hidden` to
+    the `body` element
 - `position: relative`
-    - The element remains in the normal flow of the document, but has access to `top, right, bottom, left` properties as well as `z-index`
+    - The element remains in the normal flow of the document, but has access to
+    `top, right, bottom, left` properties as well as `z-index`
 - `position: fixed`
-    - The element is removed from the normal flow of the document just like `absolute`
+    - The element is removed from the normal flow of the document just like
+    `absolute`
     - The difference with `absolute`
 
+## DEBUGGING AND DOCUMENTING
+
+- Use HTML validators and Git Diffs for HTML
+- Use Developer Tools (specifically Styles and Computed Tabs) to debug CSS
+- Use MDN Documentation for reference
+
+## PSEUDO ELEMENTS
+
+- Don't exist in the HTML but we can still select them and style them in CSS
+- They are inline elements, and so to apply `margin` and `padding` change the
+`display: inline-block`
+```css
+h1::first-letter {  /* First letter of a paragraph */
+    font-style: normal;
+    margin-right: 5px;
+}
+
+p::first-line { /* First line of every paragraph element */
+    color: red;
+}
+
+h1::after {
+    content: "TOP"; /* Can be empty as well, but content is required property */
+    background-color: #00ffff;
+}
+
+h2::before {...}
+```
 
 ## CSS GRID
 
