@@ -58,6 +58,7 @@ preceded by a h3 element */
 
 - `font-family: system-ui, sans-serif` - Ideal for website (to remove the small
 edges on letters and use system font instead of loading a custom font)
+    - To be used on the `body` element and not the `html` element for semantics
 - `font-style: italic` - To italisize the letters
 - `text-transform: uppercase/capitalise` - To change the case
 - `font-size: 26px` - Set size of font

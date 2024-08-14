@@ -1,0 +1,65 @@
+## PROCESS BEHIND BUILDING A WEBSITE
+
+- Define the project
+    - Who the website is for? - Yourself or freelancing business
+    - What is the website for? - Business and User Goals of website (Defining
+    what the website is for from User Experience point of view)
+        - Business Goal - Selling premium dog food
+        - User Goal - Finding high-quality dog food for good price
+    - Define a target audience - Be really specific if possible
+        - Women, 20 to 40 years old, living in Europe, earning 2000/month with a
+        passion for dogs
+
+- Plan the project
+    - Plan and gather the website content (text, images, videos, etc)
+    - For bigger websites plan out the sitemap (what pages the sites needs, and
+    how they are related to one another - content hierarchy)
+    - Plan what sections each page needs in order to convey the content's
+    message, and in which order
+    - The content should define the design of the website, and not vice-versa
+    - Based on the company, the project and its content, define the website
+    personality
+    
+- Sketch layout and component ideas
+    - Think about the component that you need, and how you can use them in
+    layout patterns
+    - Sketch ideas with pen and paper
+    - This is an iterative process -> experiment with different components and
+    layouts, until you arrive at a first good solution. You can change this when
+    you are implementing these ideas in code
+    - No need to sketch everything and make it perfect
+
+- Design and build website
+    - Using HTML and CSS in the browser
+    - Layouts and Components have already been selected. Now design the actual
+    visual styles
+    - Design should be based on selected website personality and the design
+    guidelines and inspiration
+    - Use the client's branding (if it exists already) for design decisions
+    whenever possible: icons, colors, typography, etc.
+
+- Test and Optimise
+    - Check browser compatibility
+    - Test the website on actual mobile devices
+    - Optimise all images (give them the right dimensions in px, and compress
+    them in order to not force our users to download huge images)
+    - Fix simple accessibility problems (color contrast issues, etc.)
+    - Run the Lighthouse performance test in Chrome DevTools and try and fix
+    reported issues
+    - Track your SEO
+
+- Launch the website
+    - Upload the website on a hosting platform (Netlify free plan)
+    - Choose and buy a domain name
+
+- Maintain and keep updating the website
+    - Keep the website content updated over time
+    - Install analytics software (Google Analytics or Fathom) to get statistics
+    about website users. This may inform future changes in site structure and
+    content
+    - A blog that is regularly updated is a good way to keep users coming back,
+    and is also good for SEO
+
+## DEFINING AND PLANNING THE PROJECT (STEP 1 AND STEP 2)
+
+- 

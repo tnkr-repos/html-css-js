@@ -34,13 +34,18 @@ we have to use different values for these ingredients
 ## TYPOGRAPHY
 
 - ![Serif vs Sans Serif](./images/serif-sans.png)
-    - Sans Serif typefaces - Inter, Open Sans, Roboto, Montserrat, Work Sans, Lato
-    - Serif typefaces - Merriweather, Aleo, Playfair Display, Cormorant, Cardo, Lora
+    - Sans Serif typefaces - Inter, Open Sans, Roboto, Montserrat, Work Sans, 
+    Lato
+    - Serif typefaces - Merriweather, Aleo, Playfair Display, Cormorant, Cardo, 
+    Lora
+    - Don't use Google Fonts (for GDPR compliance) - Use system-ui font or go
+    to any stack from https://modernfontstacks.com/
 - Limit to maximum of 2 typefaces
-- Use a Type Scale tool or pre-defined ranges for font sizes and limit them
-    - For normal text - 16px to 32px
-        - For long text (like a blog post) - 20px or bigger
-    - For headlines go big (50px+) and bold (600+)
+- Use https://typescale.com/ and use the "Perfect Fourth" or "Perfect Fifth" for
+font size references
+    - For normal text - 16px to 32px - (1rem to 2rem)
+        - For long text (like a blog post) - 20px or bigger (1.25rem+)
+    - For headlines go big (50px+) and bold (600+) - 3.125rem+
     - Don't use a font weight below 400 (regular)
 - For a good reading experience:
     - Use less than 75 characters per line
