@@ -156,4 +156,14 @@ the issue is with flex items not having same amounts of `margin` or `padding`
 
 ## CSS GRID
 
+- Grids have Grid Containers and Grid items
+- `display: grid`
+- `grid-template-columns: <width_value1> <width_value2> ... <width_valuen>` - Define as many width values as you want, and n number of columns will be created as per the specified widths. As many rows will be created as per requirement to accomodate the items
+- If we define a `height` or `width` for a cell, the whole row or column will adjust to accomodate the cell. We say that the grid items stretch to fill (just like the flex items)
+- We can manually set the row's height to allow the grid items to stretch to the specified height (unless the grid item already has a height defined to it) - `grid-template-rows: <height_value1> <height_value2> ... <height_valuen>`
+- To give space between items, `margin` won't work. Use `gap` (or `column-gap` and `row-gap`) - `gap: 30px`
+- Putting `grid-template-columns: 1fr 1fr 1fr` will create 3 columns with equal width, and they will change at the same rate. If we put `grid-template-columns: 1fr 1fr auto` then the 3rd column will take only the space necessary for its content, and the remaining space will be divided equally between the 1st and 2nd columns
+- We can do the same with explicit rows as well (the rows which are created and for which we explicitly define the height - any row created due to residual items is called implicity row). The height of a row (and thus the `fr` unit) will be determined by the tallest item in the row
+- To get grid items to span multiple cells we can use `grid-column: <start_column_no> <end_column_no>` (we can use either the positive column number or the negative column number). If we don't want to do the math, just use the start column number followed by the `span` word (`grid-column: <start_column_no> span <number_of_columns>`). Same can be done to `grid-row` to span across rows
+
 - 

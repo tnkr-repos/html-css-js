@@ -9,7 +9,9 @@ website
 - It consists of elements that describe different types of content
 - [Elements vs Tags](./images/elements-vs-tags.png)
 - `DOCTYPE` is to denote the browser that this document is an HTML document, and
-`html` tells the browser to use the HTML5 specification to render this document
+`html` tells the browser to use the HTML5 specification to render this document,
+instead of their default behavior of using different rendering modes which might
+cause incompatibility errors
 - Attributes are pieces of data that are used to describe an element
 - HTML ignores whitespaces (even multiple spaces added in content)
 
@@ -183,7 +185,7 @@ layout of the webpage in any way. General format of website:
   - `src` - To denote the path
   - `alt` - Description of the image for SEO, accessibility and if the image
   doesn't load then it will be shown on the webpage instead
-  - `width` / `
+  - `width` / height` - To describe the intrinsic size of image
 ```html
 <img src="<path>" alt="<Description>" width="<width_in_px>"
   height="<height_in_px>" />
@@ -219,7 +221,7 @@ describe in case the video fails to load
 ```
 
 - Pointing inside our website to a different page or section
-  - `<a href="<path_of_html_file>">Display text</a>
+  - `<a href="<path_of_html_file>">Display text</a>`
   - For `index.html` we can use `<a href="/">Home Page</a>` as `/` refers to the
   `index.html` page always
 
