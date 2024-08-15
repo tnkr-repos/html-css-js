@@ -17,11 +17,15 @@ to fit into the cells provided to them
 
 ## FLEXBOX
 
-- The `.container` class becomes the flex container, and all its immediate
-children becomes flex items. By default each flex item will take as much space
-as it need for its content
+- Flexbox always starts by calculating the content size for each flex item. This
+is intrinsically set to `width: max-content` for each flex item (provided the
+items don't have a width explicity set for them using `width` or `flex-basis`). 
+If so then the specified width will be the width of the flex item (`flex-basis`
+overrides `width` values for flex items)
 - Vertically though each item will be as tall as the tallest flex item.  
 ```css
+/* .container class becomes the flex container */
+/* all immediate children of .container become flex items */
 .container {
     display: flex;
     /* To align items along the cross axis */
@@ -70,10 +74,7 @@ are at that specified width, they will overflow the flex container
         initially before `flex-grow: 1`)
             - If this is applied to an individual flex item, then 
 
-- Flexbox always starts by calculating the content size for each flex item. This
-is intrinsically set to `width: max-content` for each flex item (provided the
-items don't have a width explicity set for them using `width` or `flex-basis` -
-if so then the specified width will be the width of the flex item)
+
 - Then it arranges the items in a row, or in a column depending upon the value
 of `flex-direction` property
 - Now it will start looking if the elements overflow the flex container along
@@ -156,14 +157,292 @@ the issue is with flex items not having same amounts of `margin` or `padding`
 
 ## CSS GRID
 
-- Grids have Grid Containers and Grid items
-- `display: grid`
-- `grid-template-columns: <width_value1> <width_value2> ... <width_valuen>` - Define as many width values as you want, and n number of columns will be created as per the specified widths. As many rows will be created as per requirement to accomodate the items
-- If we define a `height` or `width` for a cell, the whole row or column will adjust to accomodate the cell. We say that the grid items stretch to fill (just like the flex items)
-- We can manually set the row's height to allow the grid items to stretch to the specified height (unless the grid item already has a height defined to it) - `grid-template-rows: <height_value1> <height_value2> ... <height_valuen>`
-- To give space between items, `margin` won't work. Use `gap` (or `column-gap` and `row-gap`) - `gap: 30px`
-- Putting `grid-template-columns: 1fr 1fr 1fr` will create 3 columns with equal width, and they will change at the same rate. If we put `grid-template-columns: 1fr 1fr auto` then the 3rd column will take only the space necessary for its content, and the remaining space will be divided equally between the 1st and 2nd columns
-- We can do the same with explicit rows as well (the rows which are created and for which we explicitly define the height - any row created due to residual items is called implicity row). The height of a row (and thus the `fr` unit) will be determined by the tallest item in the row
-- To get grid items to span multiple cells we can use `grid-column: <start_column_no> <end_column_no>` (we can use either the positive column number or the negative column number). If we don't want to do the math, just use the start column number followed by the `span` word (`grid-column: <start_column_no> span <number_of_columns>`). Same can be done to `grid-row` to span across rows
+- CSS Grids have a Grid Container and Grid items. It will take up the entire
+viewport width for the grid container regardless of the number of columns unless
+there is a height or width defined for the container
+```css
+.grid-container {
+    display: grid;
+    /* If viewport width is 500px then the border will form a rectange of 500px
+    width and height as per the total row height depending on content */
+    grid-template-columns: 100px 100px;
+    outline: 1px solid blue;
+}
+```
+
+
+- `grid-template-columns: <width_value1> <width_value2> ... <width_valuen>` - 
+Define as many width values as you want, and n number of columns will be created
+as per the specified widths. As many rows will be created as per requirement to 
+accomodate the items. The value of these dimensions can be in pixel, or percent
+    - If the values for width of each column > max-content for each cell, then
+    the grid item content will fit easily in the allocated cell
+    - If the value for width of a column < max-content for a particular cell the
+    content will go into the next line in the same cell (thus increasing height
+    of the cell, and therefore of the whole row). This behavior will happen
+    provided the width is at least the width of the longest word in the content
+    - If the width of the particular cell < the longest word in the content then
+    overflow will occur as word can't be broken into different lines
+    - If we define a `height` or `width` for a cell, the whole row or column will
+    adjust to match that dimension (if the dimension is too small then we can end
+    up with content overflowing the cell as well)
+    - Putting `grid-template-columns: 1fr 1fr 1fr` will create 3 columns with
+    equal width, and they will change at the same rate. If we put
+    `grid-template-columns: 1fr 1fr auto` then the 3rd column will take only the
+    space necessary for its content, and the remaining space will be divided
+    equally between the 1st and 2nd columns
+    - fr works by distributing the remaining space in the grid container as
+        a fraction. First all the elements with the determined widths will be
+        placed, and so will be the gaps. This can result in three scenarios:
+        - Sum of all specified widths (either px or percent) and gaps > width of
+        grid container, in which case we get overflow of content
+        - Sum of all specified widths (either px or percent) and gaps = width of
+        grid container, in which case there is no extra space left
+        - Sum of all specified widths (either px or percent) and gaps < width of
+        grid container, in which case the remaining space will be distributed
+        proportionally to the columns listed with fr units (equal fr values will
+        allocate equal proportions, different fr values will grant different
+        amounts of space to that column)
+```html
+<div class=".grid-container">
+    <div class="item-1">Item 1 Item 1 Item 1 Item 1</div>
+    <div class="item-2">Item 2</div>
+    <div class="item-3">Item 3</div>
+    <div class="item-4">Item 4</div>
+    <div class="item-5">Item 5</div>
+</div>
+```
+```css
+.grid-container {
+    display: grid;
+    /* Will produce 3 columns of height equal to font-size since 1000px can
+    accomodate the content in a single row if its width is 1000px */
+    grid-template-columns: 1000px 100px 100px;
+    
+    /* Will produce taller row since the content will be broken into multiple
+    lines in order to accomodate the content in a smaller width */
+    grid-template-columns: 100px 100px 100px;
+
+    /* Will produce overflowing content since the longest word (item) cannot be
+    broken down into multiple lines */
+    grid-template-columns: 10px 100px 100px;
+
+    /* Equal width columns */
+    grid-template-columns: 3fr 3fr 3fr;
+
+    /* 1st column - Thrice the width of the other two */
+    grid-template-columns: 3fr 1fr 1fr;
+
+    /* 3rd column - width=max-content; Other two columns equally divide the
+    remaining space in the grid container */
+    grid-template-columns: 1fr 1fr auto;
+}
+```
+- Similarly we can use `grid-template-rows` to define the height of each row
+    - If height of a row is greater than height of each cell in that row
+    required to fit that content, then the items will stretch to fill the entire
+    cell
+    - If height of a row is smaller than height of at least one cell then the
+    content will overflow into the next cell
+    - If we don't give the heights of each row, then the height will be the
+    maximum height required to fit content of each cell (provided no height has
+    been applied on an individual cell)
+    - We can do use fr units for heights with explicit rows as well (explicit
+    rows are the rows which are created and for which we explicitly define the
+    height - any row created due to residual items is called implicity row). The
+    height of a row (and thus the `fr` unit) will be determined by the tallest
+    item in the row. If all the rows are given the same fr value, then all the
+    rows will have the height of the tallest cell. If you use `auto` then the
+    height of the row will be just enought to contain the content of the largest
+    cell
+    - Don't use this feature much as most of the times we won't need to use
+    `grid-template-rows`. Let Grid figure the heights itself, and we will
+    concentrate on columns mostly, and if need be then only add this property
+- So we can understand is that dimensions provided to the individual grid items
+take priority. If they are not present, then they will take the dimensions of
+the grid. If content cannot fit into the dimensions (be it the grid dimensions
+or applied on the grid item itself) then content will overflow
+
+
+- To give space between items, `margin` won't work. Use `gap` (or `column-gap` and
+`row-gap`)
+```css
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    column-gap: 30px;
+    row-gap: 40px;
+    /* Shorthand */
+    gap: 30px;
+}
+```
+
+- ![Grid Container and Items](./images/grid-container.png)
+- ![Grid Terminology](./images/grid-terminology.png)
+- ![Grid Properties](./images/grid-properties.png)
+
+
+- `auto` gives the width = max-content to a cell only when the widths of other
+columns are defined as fr. If you use px or percent to denote the width of the
+other columns, then `auto` will behave like fr instead
+
+
+- To get grid items to span multiple cells we can use 
+`grid-column: <start_column_no> / <end_column_no>` on the particular grid item 
+and not the grid container (we can use either the positive column number or the
+negative column number). If we don't want to do the math, just use the start
+column number followed by the `span` word 
+(`grid-column: <start_column_no> span <number_of_columns>`). Same can be done to
+`grid-row` to span across rows
+    - The start and end columns (or the span amount) must make sense and the
+    grid should actually have that many rows and columns
+    - They are shorthands for `grid-column-start`, `grid-column-end` and
+    `grid-row-start` and `grid-row-end` properties. By default, the values for
+    `grid-row-end` and `grid-column-end` are 1 + `grid-column-end/start`
+    - The items will not swap places, rather they will shift to the right to the
+    next grid cells, thus making way for the manually placed grid item
+    - Use negative line numbers when you want to span till the end to the grid,
+    or close to the end (without having to think about how many columns are
+    present in the grid)
+```css
+.grid-item-n {
+    grid-column: 1 / 2;
+    grid-row-start: 3;
+    grid-row-end: -1;
+
+    /* Using span for shorthand */
+    grid-row: 3 / span 4;
+}
+```
+
+
+- To align grid tracks inside of the container (if the grid container has a size
+larger than that occupied by the grid tracks):
+    - `justify-content: start/end/space-between/space-around/space-evenly` - To
+    align columns
+    - `align-content: start/end/space-between/space-around/space-evenly` - To
+    align rows    
+
+
+- To align grid items inside of the grid tracks (if the grid items don't stretch
+to occupy the entire space of the grid cell):
+    - `justify-items: stretch/center/start/end` - To align items horizontally in
+    their cells
+    - `align-items: stretch/center/start/end` - To align items vertically in
+    their cells
+
+
+- To override `align-items` and `justify-items` (which are specified in the grid
+container) use `align-self` and `justify-self` in the grid item itself
+    - `justify-self: stretch/start/center/end` - To align item horizontally
+    - `align-self: stretch/start/center/end` - To align item vertically
 
 - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- In a grid we can place items in two dimensions simultaneously (even stacked)
+- There are numbers associated with each line of a grid (called row lines and
+column lines)
+- The row lines and column lines intersect to form cells
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Use `display: grid;` to make the container a grid container, and all its
+immediate children as grid items
+- The layout doesn't change like it does when using `display: flex`. But we can
+get double spacing between items because now collapsing margins does not take
+place (as the elements are not inline or block level elements anymore; they are
+grid items)
+- Use `gap` property always and ignore `margin` for grid layouts (if you want
+different amount of spacing for rows and columns use `row-gap` and `column-gap`
+respectively) - `gap: 30px;`
+- First things first - Figure out the number of columns you will need for the
+layout
+    - Use a pen and paper and figure out how many vertical breaks are present in
+    the layout (regardless of whether it goes all the way across the webpage or
+    not, we just need to find partial or complete breaks). There isn't a need to
+    figure out the number of columns just yet
+![Find Columns Count](./images/grid-columns.png)
+- After finding out the number of columns required, create the columns
+    - Can use px, or percentage to specify the width of the grid items
+    - Use `fr` to denote fractions of the available space to be allocated to
+    the column. This will help in achieving equal width columns
+    - If you are using the same value for each column, use `repeat()` function
+```css
+/* grid-template-columns: <width_1st_item> <width_2nd_item> ... <width_nth_item>; */
+grid-template-columns: repeat(4, 1fr);  /* to get 4 equally wide columns */
+```
+- Once the columns have been created, the grid items will place themselves in
+them. If the number of grid items > number of columns, CSS will create an
+implicit rows for the remaining items until all the items have been put into the
+grid. Each row will be as tall as the tallest grid item in that row (but this
+behavior can be changed). Use `grid-template-rows` only when necessary
+- Certain elements need to span multiple columns. For this purpose use `span`
+    - Its best to create a utility class for span (be it spanning rows or
+    spanning columns, and then add that generic class to the grid items that
+    need to span in the HTML). Prevent using line numbers as much as possible
+```css
+.grid-item {
+    grid-column: span <columns_to_span>;
+}
+```
+- Even after this we might not have the layout that we want, and we would like
+to manually place an item at a particular position in the grid. For this purpose
+use `grid-column` and `grid-row` properties. They are shorthand for
+`grid-column-start` and `grid-column-end` (similar for rows). Here don't use
+utility classes, rather target the grid item that needs proper shifting of
+position and position it at the required place
+```css
+.grid-item {
+    grid-column-start: <start_column_line_number>;
+    grid-column-end: <end_column_line_number>;  /* Optional - by default it will
+    be 1 + grid-column-start */
+    grid-column-end: span <count>; /* This also works if we provide start */
+    grid-column: <start> / <end / span<count>>  /* Shorthand format */
+}
+```
+- `grid-template-areas` - WTF:????
+
+
+
+
