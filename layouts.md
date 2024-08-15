@@ -396,6 +396,23 @@ container) use `align-self` and `justify-self` in the grid item itself
     - `align-self: stretch/start/center/end` - To align item vertically
 
 
+- We can style implicit grid as well (implicit grid is the grid formed by
+implicit rows)
+```css
+.grid_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* height of explicit rows will be 150px */
+    grid-template-rows: repeat(2, 150px);
+    /* height of implicit rows will be 80px and not the height of content */
+    grid-auto-rows: 80px;
+}
+```
+- We get rows automatically and the content fills each row and moves onto the
+next row because of `grid-auto-flow` property which defaults to `row`. If you
+change this to `grid-auto-flow: column` then content will fill each column first
+then add content to the next column. If there are more grid items than grid
+cells then we will get implicit columns (and not implicit rows)
 
 
 
