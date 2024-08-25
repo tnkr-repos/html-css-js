@@ -48,7 +48,7 @@ order of conflicting declarations to determine which rule will take precendence
 	- If importance is same, cascade calculates and compares the specificities of
 	the declaration selectors. The value with the winning declaration is called
 	the cascaded value
-	![Specificity](./images/specificity.png)
+![Specificity](./images/specificity.png)
 	- If specificity is also same, the last CSS declaration in the code will apply
 - The universal selector has no specificity value (0, 0, 0) - So all other
 selectors have precendence over it
@@ -145,4 +145,3 @@ rendered later, thus overlapping the element below them
 		- abstracts - code which doesn't output any CSS (variables or mixins)
 		- vendors - all third party CSS goes
 	- 1 main Sass file to import all other files into a compiled CSS stylesheet
-
