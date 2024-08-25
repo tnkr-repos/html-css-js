@@ -14,6 +14,8 @@ each element having basically no say in what should be their widths. They need
 to fit into the cells provided to them
 - Floats (only legacy purposes)
 - Hidden - `display: none`
+- To center the whole section of content use a container utility class, provide
+it a width and set `margin: 0 auto`
 
 ## FLEXBOX
 
@@ -154,6 +156,9 @@ principle of calculating available space by subtracting margins and paddings
 from the total available space (so similar to the operation of `content-box`).
 So if elements are not aligning properly even after adding these properties then
 the issue is with flex items not having same amounts of `margin` or `padding`
+
+- Flexbox treats text as flex-items. So we can use `align-items` and
+`justify-content` to center text in a `div`
 
 ## CSS GRID
 

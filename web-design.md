@@ -1,58 +1,92 @@
 - Web Design is broken down into 9 ingredients (categories)
-    - Typography - Formatting and Designing text
-    - Colors
-    - Images / Illustrations
-    - Icons
-    - Shadows
-    - Border-radius (the rounding of edges)
-    - Whitespace
-    - User Experience
-    - Components / Layouts
+	- Typography - Formatting and Designing text
+	- Colors
+	- Images / Illustrations
+	- Icons
+	- Shadows
+	- Border-radius (the rounding of edges)
+	- Whitespace
+	- User Experience
+	- Components / Layouts
 
 - Web sites can have different personalities, and depending upon the personality
 we have to use different values for these ingredients
-    - Serious/Elegant - For luxury and elegance. Use thin serif typefaces, gold
-    or pastel colors, and high big quality images
-    - Minimalist/Simple - Focuses on important text content, and uses small or
-    medium sized black text, some lines may be presents, and very few images and
-    icons
-    - Plain/Neutral - Used in big corporations (such as Microsoft or Adobe). In
-    this personality, the design gets out of the way by using neutral and small
-    typefaces and a very structured layout
-    - Bold/Confident - Big and full typography together with bright and big
-    coloured blocks
-    - Calm/Peacful - For products and services that cater to the customer, and
-    take their care into account. Use calming pastel colors, and soft serif
-    headings together with images and illustrations that match the typeface or
-    the colors
-    - Starup/Upbeat - Modern looking sans-serif typefaces, light grey text and
-    backgrounds and rounded elements
-    - Playful/Fun - Colorful and round designs created using creative elements
-    such as hand-drawn icons or illustrations, lots of animations, and language
-    of the content itself helps to convey to play for all fun personality
+	- Serious/Elegant - For luxury and elegance. Use thin serif typefaces, gold
+	or pastel colors, and high big quality images
+	- Minimalist/Simple - Focuses on important text content, and uses small or
+	medium sized black text, some lines may be presents, and very few images and
+	icons
+	- Plain/Neutral - Used in big corporations (such as Microsoft or Adobe). In
+	this personality, the design gets out of the way by using neutral and small
+	typefaces and a very structured layout
+	- Bold/Confident - Big and full typography together with bright and big
+	coloured blocks
+	- Calm/Peacful - For products and services that cater to the customer, and
+	take their care into account. Use calming pastel colors, and soft serif
+	headings together with images and illustrations that match the typeface or
+	the colors
+	- Starup/Upbeat - Modern looking sans-serif typefaces, light grey text and
+	backgrounds and rounded elements
+	- Playful/Fun - Colorful and round designs created using creative elements
+	such as hand-drawn icons or illustrations, lots of animations, and language
+	of the content itself helps to convey to play for all fun personality
 
 ## TYPOGRAPHY
 
 - ![Serif vs Sans Serif](./images/serif-sans.png)
-    - Sans Serif typefaces - Inter, Open Sans, Roboto, Montserrat, Work Sans, 
-    Lato
-    - Serif typefaces - Merriweather, Aleo, Playfair Display, Cormorant, Cardo, 
-    Lora
-    - Don't use Google Fonts (for GDPR compliance) - Use system-ui font or go
-    to any stack from https://modernfontstacks.com/
+	- Sans Serif typefaces - Inter, Open Sans, Roboto, Montserrat, Work Sans, 
+	Lato
+	- Serif typefaces - Merriweather, Aleo, Playfair Display, Cormorant, Cardo, 
+	Lora
+	- Don't use Google Fonts (for GDPR compliance) - Use system-ui font or go
+	to any stack from https://modernfontstacks.com/
 - Limit to maximum of 2 typefaces
 - Use https://typescale.com/ and use the "Perfect Fourth" or "Perfect Fifth" for
 font size references
-    - For normal text - 16px to 32px - (1rem to 2rem)
-        - For long text (like a blog post) - 20px or bigger (1.25rem+)
-    - For headlines go big (50px+) and bold (600+) - 3.125rem+
-    - Don't use a font weight below 400 (regular)
+	- For normal text - 16px to 32px - (1rem to 2rem)
+		- For long text (like a blog post) - 20px or bigger (1.25rem+)
+	- For headlines go big (50px+) and bold (600+) - 3.125rem+
+	- Don't use a font weight below 400 (regular)
 - For a good reading experience:
-    - Use less than 75 characters per line
-    - For normal sized text use a line height between 1.5 and 2. For big text
-    go below 1.5 (the smaller or longer the text, the larger the line height)
-    - Decrease letter spacing in headlines, if it looks unnatural
-    - Experiment with all caps for short titles. Make them small and bold and
-    decrease letter-spacing
-    - Don't justify text
-    - Don't center long text blocks. Small blocks are fine
+	- Use less than 75 characters per line
+	- For normal sized text use a line height between 1.5 and 2. For big text
+	go below 1.5 (the smaller or longer the text, the larger the line height)
+	- Decrease letter spacing in headlines, if it looks unnatural
+	- Experiment with all caps for short titles. Make them small and bold and
+	decrease letter-spacing
+	- Don't justify text
+	- Don't center long text blocks. Small blocks are fine
+
+## USER EXPERIENCE (UX)
+
+- Design is not just what it looks like and feels like; Design is how it works
+	- User Interface (UI) - Visual presentation of a product (how the graphical
+	interface looks and feels - layout, personality, typography, colors, etc.)
+	- User Experience (UX) - How the user feels when he interacts with the product
+		- Is the layout intuitive
+		- Are users reaching their goals
+![UI vs UX](./images/ui-v-ux.png)
+- Goal of UX Design is to fulfill both the user and business goals. For eg. for
+a website to be selling some product, highlight the annual subscription card so
+that user is drawn to that card, which will make more money for the business as
+well as be a saving over a monthly subscription for the user
+- UX for usability:
+	- Use patterns that user know - This will make users feel-at-home with the UI
+	and thus enable them to reach their goals faster
+	- Make your action element the most prominent element, and make the text
+	descriptive - To make it obvious for the user what they should do, and how do
+	they do it
+	![uxrule1](./images/uxrule1.png)
+	- Use blue text and underlined text only for links
+	- Animations should have a purpose and be fast (200 to 500ms)
+	- For forms - align labels and fields in a single vertical line, and provide
+	feedback for all actions (form errors, form success, etc.)
+	![uxrule2](/images/uxrule2.png)
+	- Place action buttons where they will create an effect (law of locality)
+	![uxrule3](./images/uxrule3.png)
+- UX for Web content:
+	- Use a descriptive, keyword-focused headline on main page
+	- Use simple words
+	- Break up long text with sub-headings, images, block quotes, etc.
+
+## 

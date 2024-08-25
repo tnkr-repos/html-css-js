@@ -1,3 +1,5 @@
+
+
 ## INTRODUCTION
 
 - CSS - Cascading Style Sheets
@@ -134,13 +136,14 @@ font related settings)
 Everything is a box on the web
 - Box Model applies to everything on the web. It consists of:
     - Content - Width and height of an element
-    - Padding - Adds space inside of an element between the content and padding.
+    - Padding - Adds space inside of an element between the content and border.
     Used most often on elements with some `background-color`
     - Border - A lien around the content but inside the element
     - Margin - creates extra space around an element which pushes away the other
-    elements away
+    elements away. Used to create space between boxes
     - Fill Area - If we apply a `background-color` or `background-image` to an
     element, it will occupy the entire visible part (content + padding + border)
+    - These are all optional
 - ![Box Model](./images/box-model.png)
 - To view an element's box model in Dev Tools - Select the element using the
 `Element Selector` tool and go to the `Computed` tab
@@ -186,7 +189,8 @@ browser
 - Under normal circumstances, `border` and `padding` are inside the block
 element, and when calculating the net effective `height` and `width` of the
 element, we need to add them up. This is tedious so use `box-sizing: border-box`
-(normally it is `box-sizing: content-box`)
+(normally it is `box-sizing: content-box`). Using this, the `height` and `width`
+would define the dimensions of the fill area, and not that of the content area
 ```css
 *,
 *::before,
@@ -411,3 +415,11 @@ h1::after {
 h2::before {...}
 ```
 
+## BUTTON STYLING
+
+- Should always include `border: none; cursor: pointer`
+- They are like inline-elements - `text-align` affects them
+- `color` doesn't get inherited by them - so will have to add it explicitly
+-
+
+## 

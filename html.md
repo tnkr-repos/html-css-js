@@ -177,6 +177,8 @@ layout of the webpage in any way. General format of website:
   - `footer` - Positioned at the bottom of the page representing the ending of
   the body. If contains contact information, social links, and some navigation
   similar to a header menu
+  - `menu` - For various actions that can be performed (specifically for web
+  applications)
 
 ## IMAGES
 
@@ -185,7 +187,9 @@ layout of the webpage in any way. General format of website:
   - `src` - To denote the path
   - `alt` - Description of the image for SEO, accessibility and if the image
   doesn't load then it will be shown on the webpage instead
-  - `width` / height` - To describe the intrinsic size of image
+  - `width` / `height` - To describe the intrinsic size of image
+  - `margin` / `padding` - works even though `display: inline` because it is a
+  replaced element (works like an `inline-block`)
 ```html
 <img src="<path>" alt="<Description>" width="<width_in_px>"
   height="<height_in_px>" />

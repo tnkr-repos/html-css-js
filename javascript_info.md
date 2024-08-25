@@ -56,13 +56,23 @@
 
 ## THE MODERN MODE USE STRICT
 
-- Enable modern modifications introduced as part of ECMAScript standards by 
-  using `"use strict"` at top of any JavaScript file
-- If you use it at top of any JavaScript function, it will be enabled just 
-  for that function
+- Enable modern modifications introduced as part of ECMAScript standards by
+using `"use strict"` at top of any JavaScript file
+- If you use it at top of any JavaScript function, it will be enabled just for
+that function
 - Once we start using classes and modules, this won't be further necessary
-- If you place it at a line x, it will not be enabled for code present 
-  within lines 0 to x-1
+- If you place it at a line x, it will not be enabled for code present within
+lines 0 to x-1
+- Used to opt-in a restricted variant of JavaScript which has different
+semantics than regular code. For eg. better code optimisation by JavaScript
+engines in the browser
+- Browsers not supporting strict mode will run strict mode code different from
+browsers that do
+- Non-strict mode is also referred to as "sloppy mode"
+- It can be applied on entire scripts or individual functions, but not to block
+statements
+  - For entire script - "use strict;" before any other statements
+  - For functions - "use strict;" before any statements in the function body
 
 ## VARIABLES
 
@@ -711,7 +721,7 @@ window.onerror = function(message, url, line, col, error) {}
 
 - 
 
-# PROMISES, ASYNC/AWAIT - TODO - WHOLE OF JAVASCRIPT BEFORE THIS PART (TOUGH)
+# PROMISES, ASYNC/AWAIT
 
 ## INTRODUCING CALLBACKS
 
@@ -731,6 +741,52 @@ window.onerror = function(message, url, line, col, error) {}
 ## MICROTASKS
 
 ## ASYNC / AWAIT
+
+- What is synchronous JavaScript?
+  - Synchronous code is executed line by line in the order it which it is defined in the code
+  - One statement is executed only after the previous one has finished
+  - This has a problem - If one of the statements takes a long time to finish, it will prevent the execution of rest of
+  the code
+  - For eg.
+```javascript
+const p = document.querySelector('.p');
+p.textContent = "My name is Rahul";
+alert("Text set!");    // takes long to execute (until user clicks on OK)
+p.style.color = 'red';  // execution halts till alert() prompt is dealt with
+```
+
+- What is asynchronous JavaScript?
+  - Asynchronous code is executed after a task that runs in the background finishes
+  - It is non-blocking, so it doesn't stop the execution of rest of the code
+  - For eg.
+```javascript
+const p = document.querySelector(".p");
+setTimeout(function() {      // setTimeout uses the callback function asynchronously - after 5s has crossed
+  p.textContent = "My name is Rahul";
+}, 5000);
+p.style.color = "red";
+
+const img = document.querySelector(".dog");
+img.src = "dog.jpg";    // asynchronously loaded (to keep file loading times in check for large pictures)
+img.addEventListener("load", function() {
+  img.classList.add("fadeIn");
+});
+p.style.width = "300px";
+```
+- NOTE - Callback functions alone do not make the code asynchronous
+
+- What is asychronous JavaScript used for?
+  - To make AJAX calls to APIs
+
+- What is AJAX?
+  - AJAX stands for Asynchronous JavaScript and XML
+  - It allows us to communicate with web servers in an asynchronous way
+  - Using AJAX calls we can request data from web servers dynamically (use data from web servers without page reload)
+  - XML is not used anymore; all data transmission between the server and the client (browser) happends in JSON format
+  
+
+- 
+
 
 # GENERATORS, ADVANCED ITERATION
 
@@ -753,3 +809,268 @@ import {sayHi} from "./sayHi.js";
 alert(sayHi);   // function
 sayHi("John");
 ```
+
+# DOCUMENT
+
+## BROWSER ENVIRONMENT, SPECS
+
+- Host environment - A platform that is capable of executing JavaScript (browser
+or webserver, or another host machine). Each host environment provides its own
+objects and functions in addition to the language core
+- ![Browser Environment](./images/browser_environment.png)
+- `window` - root object
+  - It is a global object for JavaScript code (`window.alert("Hello World");`)
+  - Represents the browser window and provides methods to control it
+  (`window.innerHeight`)
+
+## DOM(Document Object Model)
+
+- Represents all page contents as objects that can be modified
+- `document` object is the main entry point to the page. We can change or create
+anything using it
+
+# INTRODUCTION TO EVENTS
+
+## 
+
+# DOCUMENT AND RESOURCE LOADING
+
+## DOMContentLoaded, load, beforeunload, unload
+
+- Lifecycle of HTML page:
+  - `DOMContentLoaded` - The browser fully loaded HTML and the DOM tree is built
+  but external resources like pictures, `img` and stylesheets are not
+  - `load` - not only HTML is loaded, but also all the external resources
+  - `beforeunload / unload` - The user is leaving the page
+
+
+
+
+
+
+
+
+
+
+
+
+# STORING DATA IN THE BROWSER
+
+## Cookies, document.cookie
+
+- Cookies are part of HTTP
+- Small strings of data that are stored directly in the browser
+- Sent by a web server using the response `Set-Cookie` HTTP header. Then the
+browser automatically adds them to every request to the same domain using the
+`Cookie` HTTP header
+- Used for authentication - Upon sign-in, the server uses the `Set-Cookie` HTTP
+header in the response to set a cookie with a unique "session identifier". Next
+time the request is sent to the same domain, the browser sends the cookie over
+the next using the `Cookie` HTTP header so the server knows who made the request
+- Access cookies from the browser using `document.cookie` property
+
+### Reading from document.cookie
+
+- To get the cookies stored from a particular website - `document.cookie`
+  - It consists of `name=value` pairs delimited by `;`
+  - To find a particular cookie, split `document.cookie` by `;` and find the
+  right name
+
+### Writing to document.cookie
+
+- `document.cookie` is not a data property, it an accessor (getter/setter)
+- A write operation to `document.cookie` updates only the cookie mentioned in it
+and doesn't touch other cookies
+- `name` and `value` of a cookie can have any value, but to keep formatting
+valid they should be escaped using a built-in `encodeURIComponent` function
+```javascript
+// special characters (space) needs encoding
+let name = "my name";
+let value = "Rahul Singh";
+
+// encodes the cookie
+document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+console.log(document.cookie);  // my%20name=Rahul%20Singh
+```
+
+#### Limitations
+- We can only set/update a single cookie at a time using `document.cookie`
+- Each `name=value` pair should not exceed 4KB (so nothing huge can be stored in
+a cookie)
+- Total number of cookies is around 20 per domain
+
+### domain
+
+- `domain = site.com`
+- Specifies where the cookie is accessible
+- There's no way to let a cookie be accessible from another 2nd-level domai. So
+`other.com` will never receive a cookie set at `site.com`. This is a safety
+restriction to allow us to store sensitive data in cookies that should be
+available only on one site
+- By default, a cookie is not shared with a subdomain (so cookie for `site.com`
+will not be shared with `forum.site.com`). But this can be changed
+  - When setting a cookie at `site.com` we should explicitly set the `domain`
+  attribute to the root domain (`domain=site.com`)
+```javascript
+document.cookie = "user=Rahul; domain=site.com";
+console.log(document.cookie);  // at forum.site.com subdomain user=Rahul
+```
+
+### secure
+
+- `secure`
+- To enforce cookie should be transferred only over HTTPS
+- By default, if we set a cookie at `http://site.com` then it also appears at
+`https://site.com` and vice-versa, as cookies are domain-based and do not
+distinguish between protocols
+- 
+
+### samesite
+
+- Used to protect from XSRF (cross-site request forgery) attacks
+
+#### XSRF attack
+
+- 
+
+### httpOnly
+
+- Forbids any JavaScript access to the cookie. So `document.cookie` is invisible
+- This is done to protect from attacks when a hacker injects his own JavaScript
+code into a page (which should not be possible, but it can happen due to bugs)
+and waits for a user to visit that page. When a user does visit the webpage, 
+the code executes and gains access to `document.cookie` with user
+cookies containing authentication information
+
+### Cookie Functions
+
+- `getCookie(name)`, `setCookie(name, value, attributes)`, `deleteCookie(name)`
+- Updating and deleting a cookie should use the same path and domain attributes
+as when we set it
+```javascript
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value, options = {}) {
+
+  options = {
+    path: '/',
+    // add other defaults here if necessary
+    ...options
+  };
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
+// To delete a cookie set a negative expiration date
+function deleteCookie(name) {
+  setCookie(name, "", {
+    'max-age': -1
+  })
+}
+```
+
+### Third-Party Cookies
+
+- A cookie placed by a domain other than the page the user is visiting
+- Generally used for tracking and ads services. The originating domain can track
+the same user between different sites, if they all access it
+  - A page at `site.com` loads a banner from another site `ads.com`
+  - The remote server at `ads.com` sets the `Set-Cookie` header with a cookie
+  like `id=1234`. Such a cookie originates from `ads.com` and is only visible to
+  it
+  - Next tiem `ads.com` is accessed, the remote server gets the `id` cookie and
+  recognises the user
+  - When the user moves from `site.com` to `other.com` which also has a banner,
+  then `ads.com` gets the cookie as it belongs to `ads.com` thus recognising
+  the visitor and tracking him as he moves between sites
+- If a script (from a third-party domain) sets a cookie (using `document.cookie`
+) then no matter where the script came from, the cookie belongs to the domain of
+the current webpage
+
+### GDPR
+
+- There's a legislation in Europe that enforces a set of rules for websites to
+respect the users' privacy. One of these rules require explicit permission for
+tracking/identifying/authorizing cookies
+- Websites generally have 2 variants of complying with GDPR:
+  - To set tracking cookies only for authenticated users - Registration form
+  should have a checkbox like "Accept the Privacy Policy" that describes how the 
+  cookies are used, and the user must check it
+  - To set tracking cookies for everyone - Show a modal "Splash Screen" and
+  require everyone to agree to the cookies. Only then the website can let the
+  people see the content
+
+## LocalStorage, sessionStorage
+
+- Allows us to save key-value pairs in the browser
+- Data survives a page refresh (for `sessionStorage`) and even a full browser
+restart (for `localStorage`)
+- Web storage objects are not sent to server with each request. So we can store
+much more (at least 5MB)
+- The server can't manipulate storage objects via HTTP Headers
+- The storage is bound to the origin (domain/protocol/port). Different protocols
+or subdomains infer different storage objects - they can't access data from each
+other
+- Methods and properties - `setItem(key, value)`, `getItem(key)`,
+`removeItem(key)`, `clear()` (delete everything), `key(index)` (get the key on a
+given position), `length` (number of stored items)
+
+### localStorage Demo
+
+- Main features:
+  - Shared between all tabs and windwos from the same origin
+  - The data does not expire (remains even after browser restart and OS reboot)
+- 
+
+## IndexedDB
+
+- Database built into the browser
+- More performant than `localStorage`
+  - Stores almost any kind of values by keys
+  - Supports transactinos for reliability
+  - Supports key range queries, indexes
+  - Can store much bigger volumes of data than `localStorage`
+- Used for offline apps (overkill for client-server applications)
+- Data is stored in visitor's home directory
+
+# WEB COMPONENTS
+
+- Splitting UI into various reusable units which handle their own complexity
+- Usually provided by frameworks, but can be provided by the browser itself:
+
+## CUSTOM ELEMENTS
+
+- Create custom HTML elements described by class with its own methods, events,
+properties and so on
+- Once defined, we can use it just like built-in HTML elements
+- Types of custom elements:
+  - Autonomous custom elements - "All-new" elements, extending the `HTMLElement`
+  class
+  - Customised build-in elements - Extending built-in elements
+
+## SHADOW DOM
+
+## CSS SCOPING
+
+## EVENT RETARGETING
+
+
