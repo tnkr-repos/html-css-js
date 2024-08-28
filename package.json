@@ -1,0 +1,31 @@
+{
+  "name": "html-css",
+  "version": "1.0.0",
+  "description": "HTML, CSS, and JavaScript notes for future reference",
+  "main": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tnkr-repos/html-css-js.git"
+  },
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Notes",
+    "Frontend",
+    "Web",
+    "Development"
+  ],
+  "author": "Rahul Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tnkr-repos/html-css-js/issues"
+  },
+  "homepage": "https://github.com/tnkr-repos/html-css-js#readme",
+  "devDependencies": {
+    "prettier": "3.3.3"
+  }
+}
